@@ -7,8 +7,5 @@
     height: 92vh;
     background-color: white;
     box-shadow: -8px 5px 8px -10px #313131;
-}
-
-.menu form{
     overflow: scroll;
 }
