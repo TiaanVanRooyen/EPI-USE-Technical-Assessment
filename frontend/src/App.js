@@ -16,11 +16,11 @@ function App() {
   useEffect(() => {
     async function getData(){
       try {
-        let res = await fetch('https://epi-use-technical-assessment-api.onrender.com/api/employeeData/tree');
+        let res = await fetch('/api/employeeData/tree');
         let data = await res.json();
         await setTreeData(data);
   
-        res = await fetch('https://epi-use-technical-assessment-api.onrender.com/api/employeeData');
+        res = await fetch('/api/employeeData');
         data = await res.json();
         await setData(data);
       } catch (error) {
