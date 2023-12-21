@@ -15,13 +15,17 @@ function App() {
 
   useEffect(() => {
     async function getData(){
-      let res = await fetch('/api/employeeData/tree');
-      let data = await res.json();
-      await setTreeData(data);
-
-      res = await fetch('/api/employeeData');
-      data = await res.json();
-      await setData(data);
+      try {
+        let res = await fetch('https://epi-use-technical-assessment-api.onrender.com/api/employeeData/tree');
+        let data = await res.json();
+        await setTreeData(data);
+  
+        res = await fetch('https://epi-use-technical-assessment-api.onrender.com/api/employeeData');
+        data = await res.json();
+        await setData(data);
+      } catch (error) {
+        alert(error);
+      }
     }
 
     getData();
@@ -30,7 +34,7 @@ function App() {
   return (
     <div className="App">
       <div className='title-bar'>
-        <h1>Employee hierarchy</h1>
+        <h1>Employee Hierarchy</h1>
       </div>
       <div className='tree'>
         <div className='move' id='moveX'>

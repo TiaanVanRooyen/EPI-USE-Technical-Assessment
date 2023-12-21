@@ -47,7 +47,7 @@ const Menu = ({selectedEmployee, data}) => {
 
     async function handleDelete(){
         const empNo = document.getElementById('empNo').value;
-        const res = await fetch('/api/employeeData/' + empNo, {method : 'delete'});
+        const res = await fetch('https://epi-use-technical-assessment-api.onrender.com/api/employeeData/' + empNo, {method : 'delete'});
         const message = await res.json();
 
         if (res.status === 200){
@@ -83,7 +83,7 @@ const Menu = ({selectedEmployee, data}) => {
         let res;
 
         if (selectedEmployee.id){
-            res = await fetch('/api/employeeData/' + empNo, {
+            res = await fetch('https://epi-use-technical-assessment-api.onrender.com/api/employeeData/' + empNo, {
                 method : 'put',
                 headers : {
                     'Content-Type' : 'application/json'
@@ -92,7 +92,7 @@ const Menu = ({selectedEmployee, data}) => {
             });
         }
         else{
-            res = await fetch('/api/employeeData', {
+            res = await fetch('https://epi-use-technical-assessment-api.onrender.com/api/employeeData', {
                 method : 'post',
                 headers : {
                     'Content-Type' : 'application/json'
