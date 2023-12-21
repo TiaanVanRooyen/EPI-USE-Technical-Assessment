@@ -41,18 +41,18 @@ const Gizmo = () => {
     return ( 
         <div className='gizmo'>
             <div className='top'>
-                <button onClick={moveUp}>⯅</button>
+                <button onClick={moveUp}>&#11165;</button>
             </div>
             <div className='mid'>
-                <button onClick={moveLeft}>⯇</button>
+                <button onClick={moveLeft}>&#11164;</button>
                 <div className='zoom'>
                     <button onClick={zoomIn}>+</button>
                     <button onClick={zoomOut}>-</button>
                 </div>
-                <button onClick={moveRight}>⯈</button>
+                <button onClick={moveRight}>&#11166;</button>
             </div>
             <div className='bottom'>
-                <button onClick={moveDown}>⯆</button>
+                <button onClick={moveDown}>&#11167;</button>
             </div>
     </div>
      );
