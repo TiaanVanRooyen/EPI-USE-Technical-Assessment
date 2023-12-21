@@ -69,10 +69,13 @@
     transition: .5s;
   }
   
-  .tree-node img{
-    width: 80px;
+  .tree-node .pfp{
     display: block;
     margin: auto;
+    margin-bottom: 10px;
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
   }
   
   /* Hover section */

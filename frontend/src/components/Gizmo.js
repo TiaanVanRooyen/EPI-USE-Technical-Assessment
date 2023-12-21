@@ -12,8 +12,10 @@ const Gizmo = () => {
     }
     
     function zoomOut(){
-        scale -= 0.1
-        document.getElementById('parent-tree').style.transform = 'scale('+ scale + ')';
+        if(scale > 0.2){
+            scale -= 0.1
+            document.getElementById('parent-tree').style.transform = 'scale('+ scale + ')';
+        }
     }
     
     function moveLeft(){
@@ -38,12 +40,20 @@ const Gizmo = () => {
 
     return ( 
         <div className='gizmo'>
-        <button onClick={zoomIn}>Zoom in</button>
-        <button onClick={zoomOut}>Zoom out</button>
-        <button onClick={moveLeft}>Left</button>
-        <button onClick={moveRight}>Right</button>
-        <button onClick={moveUp}>Up</button>
-        <button onClick={moveDown}>Down</button>
+            <div className='top'>
+                <button onClick={moveUp}>⯅</button>
+            </div>
+            <div className='mid'>
+                <button onClick={moveLeft}>⯇</button>
+                <div className='zoom'>
+                    <button onClick={zoomIn}>+</button>
+                    <button onClick={zoomOut}>-</button>
+                </div>
+                <button onClick={moveRight}>⯈</button>
+            </div>
+            <div className='bottom'>
+                <button onClick={moveDown}>⯆</button>
+            </div>
     </div>
      );
 }

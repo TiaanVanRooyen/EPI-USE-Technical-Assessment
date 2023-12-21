@@ -12,10 +12,26 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
-    box-shadow: 8px -5px 8px -10px #4b4b4b;
+    box-shadow: -8px 5px 8px -10px #313131;
     color: black;
   }
   
   .gizmo button:hover{
     background-color: #4b4b4b;
+  }
+
+  .top{
+    text-align: center;
+  }
+
+  .mid{
+    display: flex;
+  }
+
+  .zoom :nth-child(2){
+    padding: 11px;
+  }
+
+  .bottom{
+    text-align: center;
   }

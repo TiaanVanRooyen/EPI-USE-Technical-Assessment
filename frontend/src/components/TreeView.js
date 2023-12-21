@@ -1,33 +1,27 @@
-import { useState } from "react";
 import './TreeView.css';
-import pfp from './pfp.jpg'
+import Gravatar from 'react-gravatar';
 
-const TreeNode = ({node}) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const toggle = () => {setIsOpen(!isOpen)};
-
+const TreeNode = ({node, handleClick}) => {
     return (
         <li className="tree-node">
-            <span>
-                <h3>{node.name}</h3>
+            <span onClick={() => {handleClick(node)}}>
+                {node.id}
+                <h3>{node.name + ' ' + node.surname}</h3>
 
-                <img src={pfp} alt="pfp" />
+                <Gravatar className='pfp' email={node.Email} />
 
-                {node.children && (
-                <button className="toggle-icon" onClick={toggle}>
-                    {isOpen ? 'Collapse' : 'Expand'}
-                </button>
-            )}    
+                <p>{'(' + node.Position + ')'}</p>
             </span>
-            {isOpen && (<TreeView data={node?.children} />)}
+            {node.children && (<TreeView data={node?.children} handleClick={handleClick} />)}
         </li>
     );
 }
 
-const TreeView = ({data, id}) => {
+const TreeView = ({data, id, handleClick}) => {
     return (  
         <ul id={id} className="tree-view">
-            {data.map(node => (<TreeNode key={node.id} node={node} />))}
+            {data.map(node => (<TreeNode key={node.id} handleClick={handleClick} node={node} />))}
+            
         </ul>
     )
 }

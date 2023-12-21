@@ -31,12 +31,25 @@
   transition: .5s;
 }
 
-.menu{
+.add-button{
+  display: block;
   position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 25%;
-  height: 92vh;
-  background-color: white;
+  left: 20px;
+  bottom: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  font-weight: bolder;
+  background-color: crimson;
+  color: #fff;
   box-shadow: -8px 5px 8px -10px #313131;
+  border: 2px solid #000;
+}
+
+.add-button:hover{
+  background-color: orangered;
+}
+
+p{
+  font-weight: bold;
 }
