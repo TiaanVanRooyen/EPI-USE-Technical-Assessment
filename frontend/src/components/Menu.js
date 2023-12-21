@@ -16,9 +16,6 @@ const Menu = ({selectedEmployee, data}) => {
         else{
             setSelectedValue(null);
         }
-    
-        // You can perform additional actions based on the selected value if needed
-        // For example, trigger an API call, update other components, etc.
       };
 
     useEffect(() => {

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-// Define a Mongoose schema
+// Define Mongoose schema
 const employeeSchema = new mongoose.Schema({
     _id : String,
     name : String,
@@ -22,7 +22,7 @@ const employeeSchema = new mongoose.Schema({
     }
 });
   
-  // Create a Mongoose model
+  // Create Mongoose model
   const employee = mongoose.model('employees', employeeSchema);
 
   module.exports = employee;
