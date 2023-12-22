@@ -21,7 +21,7 @@ employeeSchema.pre('findByIdAndDelete', { document: true, query: false }, async 
 
   // Find and remove all employees with this employee as a manager
   await this.model('employees').deleteMany({ Manager: employeeId });
-
+  console.log('here');
   // Continue with the remove operation
   next();
 });
