@@ -16,8 +16,8 @@ const employeeSchema = new mongoose.Schema({
 });
 
 // Cascade delete pre hook
-employeeSchema.pre('findByIdAndDelete', { document: true, query: false }, async function (next) {
-  const employeeId = this._id;
+employeeSchema.pre('findOneAndDelete', { document: true, query: false }, async function (next) {
+  const employeeId = this.getFilter()._id;
 
   // Find and remove all employees with this employee as a manager
   await this.model('employees').deleteMany({ Manager: employeeId });
