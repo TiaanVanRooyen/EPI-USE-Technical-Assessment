@@ -74,12 +74,8 @@ router.get('/employeeData/:id', async (req, res) => {
 
 router.delete('/employeeData/:id', async (req, res) => {
   try {
-    // Find the employee to delete
-    const employeeToDelete = await employee.findByIdAndDelete(req.params.id)
-
-    if (!employeeToDelete) {
-      return res.status(404).json({ "Error": 'Employee not found' });
-    }
+    // Find the employee and delete
+    await employee.findByIdAndDelete(req.params.id);
 
     res.status(200).json({ "Message": 'Employee and descendants deleted successfully' });
   } catch (error) {
