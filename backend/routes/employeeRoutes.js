@@ -86,6 +86,7 @@ router.delete('/employeeData/:id', async (req, res) => {
 
     res.status(200).json({ "Message": 'Employee and descendants deleted successfully' });
   } catch (error) {
+    console.error('Error:', error);
     res.status(500).json({ "Error": 'Internal Server Error' });
   }
 });
