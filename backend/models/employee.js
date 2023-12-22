@@ -19,8 +19,19 @@ const employeeSchema = new mongoose.Schema({
 employeeSchema.pre('findOneAndDelete', async function (next) {
   const employeeId = this.getFilter()._id;
 
-  // Find and remove all employees with this employee as a manager
-  await this.model.deleteMany({ Manager: employeeId });
+  // Define a recursive function to delete descendants
+  const deleteDescendants = async (id) => {
+    // Find and remove all employees with this employee as a manager
+    const descendants = await this.model.find({ Manager: id });
+
+    for (const descendant of descendants) {
+      await this.model.findOneAndDelete({ _id: descendant.id });
+      await deleteDescendants(descendant._id);
+    }
+  };
+
+  // Start recursive deletion
+  await deleteDescendants(employeeId);
 
   // Continue with the remove operation
   next();
