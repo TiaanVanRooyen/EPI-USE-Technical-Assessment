@@ -17,10 +17,10 @@ const employeeSchema = new mongoose.Schema({
 
 // Cascade delete pre hook
 employeeSchema.pre('remove', async function (next) {
-  const employeeId = this.id;
+  const employeeId = this._id;
 
   // Find and remove all employees with this employee as a manager
-  await this.model('Employee').deleteMany({ manager: employeeId });
+  await this.model('employees').deleteMany({ Manager: employeeId });
 
   // Continue with the remove operation
   next();
