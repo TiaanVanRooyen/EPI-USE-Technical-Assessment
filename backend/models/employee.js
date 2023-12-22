@@ -19,9 +19,8 @@ const employeeSchema = new mongoose.Schema({
 employeeSchema.pre('findOneAndDelete', async function (next) {
   const employeeId = this.getFilter()._id;
 
-  console.log('here');
   // Find and remove all employees with this employee as a manager
-  await this.model('employees').deleteMany({ Manager: employeeId });
+  await this.model().deleteMany({ Manager: employeeId });
 
   // Continue with the remove operation
   next();
