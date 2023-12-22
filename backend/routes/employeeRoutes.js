@@ -75,10 +75,10 @@ router.get('/employeeData/:id', async (req, res) => {
 router.delete('/employeeData/:id', async (req, res) => {
   try {
     // Find the employee to delete
-    const employeeToDelete = await employee.findOne({ id: req.params.id });
+    const employeeToDelete = await employee.findById(req.params.id);
 
     if (!employeeToDelete) {
-      return res.status(404).json({ error: 'Employee not found' });
+      return res.status(404).json({ "Error": 'Employee not found' });
     }
 
     // Trigger the remove operation, which will cascade delete
