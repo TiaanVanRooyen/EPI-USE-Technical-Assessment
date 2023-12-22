@@ -11,15 +11,19 @@ const employeeSchema = new mongoose.Schema({
     Email : String,
     Manager : {
       type: String,
-      required: false,
-      validate: {
-        validator: function (value) {
-          // Custom validator function
-          return value !== this.EmployeeNo;
-        },
-        message: 'An employee cannot be his/her own manager.',
-      }
+      default : null
     }
+});
+
+// Cascade delete pre hook
+employeeSchema.pre('remove', async function (next) {
+  const employeeId = this.id;
+
+  // Find and remove all employees with this employee as a manager
+  await this.model('Employee').deleteMany({ manager: employeeId });
+
+  // Continue with the remove operation
+  next();
 });
   
   // Create Mongoose model

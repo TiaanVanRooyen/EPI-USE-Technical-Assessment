@@ -72,17 +72,22 @@ router.get('/employeeData/:id', async (req, res) => {
   res.json(data);
 });
 
-router.delete('/employeeData/:id', (req, res) => {
-  employee.findByIdAndDelete(req.params.id)
-  .then(async () => {
-    await employee.deleteMany({Manager : req.params.id}); //Cascade delete to prevent orphan records
-  })
-  .then(() => {
-      res.status(200).json({ "Message" : "Record successfully removed"});
-  })
-  .catch(err => {
-      res.status(500).json({ "Error" : err });
-  })
+router.delete('/employeeData/:id', async (req, res) => {
+  try {
+    // Find the employee to delete
+    const employeeToDelete = await Employee.findOne({ id: req.params.id });
+
+    if (!employeeToDelete) {
+      return res.status(404).json({ error: 'Employee not found' });
+    }
+
+    // Trigger the remove operation, which will cascade delete
+    await employeeToDelete.remove();
+
+    res.status(200).json({ "Message": 'Employee and descendants deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ "Error": 'Internal Server Error' });
+  }
 });
   
   module.exports = router;
