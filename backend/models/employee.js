@@ -20,7 +20,7 @@ employeeSchema.pre('findOneAndDelete', async function (next) {
   const employeeId = this.getFilter()._id;
 
   // Find and remove all employees with this employee as a manager
-  await this.model().deleteMany({ Manager: employeeId });
+  await this.model.deleteMany({ Manager: employeeId });
 
   // Continue with the remove operation
   next();
